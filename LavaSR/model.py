@@ -42,8 +42,8 @@ class LavaEnhance:
 
         return wav
 
-    def load_audio(self, file_path, input_sr=16000, cutoff=None):
-        x = load_wav(file_path, resample_to=input_sr).to(self.device)
+    def load_audio(self, file_path, input_sr=16000, duration=10000, cutoff=None):
+        x = load_wav(file_path, resample_to=input_sr, duration=duration).to(self.device)
         
         if cutoff == None:
             cutoff = input_sr//2
