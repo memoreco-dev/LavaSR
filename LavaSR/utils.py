@@ -3,8 +3,8 @@ import torch
 import librosa
 import torchaudio
 
-def load_wav(audio_file, resample_to=16000):
-    wav, sr = librosa.load(audio_file, sr=48000, duration=20)
+def load_wav(audio_file, resample_to=16000, duration=1000):
+    wav, sr = librosa.load(audio_file, sr=48000, duration=duration)
     wav = torch.tensor(wav)
 
     x = torchaudio.functional.resample(wav, sr, resample_to)
