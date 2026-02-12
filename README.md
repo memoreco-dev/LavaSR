@@ -1,5 +1,4 @@
 # 🌋 LavaSR
-# LuxTTS
 <p align="center">
   <a href="https://huggingface.co/YatharthS/LavaSR">
     <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-FFD21E" alt="Hugging Face Model">
