@@ -95,6 +95,7 @@ A: Because it uses the Vocos architecture which is isotropic and single pass, it
 
 - [x] Release model and code
 - [x] Huggingface spaces demo
+- [ ] Release model with no metallic issue.
 - [ ] Release training code
 - [ ] Release model trained on music and audio
 
