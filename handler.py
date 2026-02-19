@@ -15,8 +15,9 @@ def get_model():
         from LavaSR.model import LavaEnhance
 
         print("Downloading model weights...")
+        repo_id = os.environ.get("HF_OWNER") + "/" + os.environ.get("HF_REPO")
         local_path = snapshot_download(
-            repo_id=os.environ.get("MODEL_REPO_ID"),
+            repo_id=repo_id,
             repo_type="model",
             local_dir="/app/model_weights",
         )
