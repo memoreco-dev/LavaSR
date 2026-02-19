@@ -13,7 +13,7 @@ class LavaEnhance:
     def __init__(self, model_path="YatharthS/LavaSR", device='cpu'):
 
         if model_path == "YatharthS/LavaSR":
-            model_path = snapshot_download(model_path)
+            model_path = snapshot_download(model_path, repo_type="model")
 
         self.device = device
         self.bwe_model = LavaBWE(f"{model_path}/enhancer", device=device) ## proposed work
