@@ -25,7 +25,5 @@ RUN uv pip install --system --no-cache \
 # Copy handler
 COPY handler.py .
 
-# Pre-download the model weights at build time so cold starts are instant
-RUN python -c "from LavaSR.model import LavaEnhance; LavaEnhance('YatharthS/LavaSR', 'cpu')"
 
 CMD ["python", "-u", "handler.py"]
