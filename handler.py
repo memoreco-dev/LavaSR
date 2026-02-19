@@ -3,8 +3,6 @@ import base64
 import tempfile
 import os
 import soundfile as sf
-from huggingface_hub import snapshot_download
-from LavaSR.model import LavaEnhance
 
 # Lazy-loaded global model
 model = None
@@ -12,6 +10,10 @@ model = None
 def get_model():
     global model
     if model is None:
+        # Imports are here so RunPod's scanner doesn't trigger model validation
+        from huggingface_hub import snapshot_download
+        from LavaSR.model import LavaEnhance
+
         print("Downloading model weights...")
         local_path = snapshot_download(
             repo_id="YatharthS/LavaSR",
