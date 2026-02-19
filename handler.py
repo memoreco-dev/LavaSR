@@ -16,7 +16,7 @@ def get_model():
 
         print("Downloading model weights...")
         local_path = snapshot_download(
-            repo_id="YatharthS/LavaSR",
+            repo_id=os.environ.get("MODEL_REPO_ID"),
             repo_type="model",
             local_dir="/app/model_weights",
         )
