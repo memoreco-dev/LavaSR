@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir uv
 
 # Install LavaSR directly from GitHub
 RUN uv pip install --system --no-cache \
-        git+https://github.com/ysharma3501/LavaSR.git
+        git+https://github.com/memoreco-dev/LavaSR.git
 
 # Install RunPod SDK and soundfile
 RUN uv pip install --system --no-cache \
