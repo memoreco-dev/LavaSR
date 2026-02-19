@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install uv for fast package installs
 RUN pip install --no-cache-dir uv
 
-# Install LavaSR directly from GitHub
+# Install LavaSR from YOUR fork (contains the repo_type fix)
 RUN uv pip install --system --no-cache \
         git+https://github.com/memoreco-dev/LavaSR.git
 
@@ -24,6 +24,5 @@ RUN uv pip install --system --no-cache \
 
 # Copy handler
 COPY handler.py .
-
 
 CMD ["python", "-u", "handler.py"]
