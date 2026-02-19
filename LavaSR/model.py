@@ -10,8 +10,9 @@ from LavaSR.enhancer.linkwitz_merge import FastLRMerge
 
 
 class LavaEnhance:
-    def __init__(self, model_path="YatharthS/LavaSR", device='cpu'):
-
+    def __init__(self, model_path=None, device='cpu'):
+        if model_path is None:
+            raise ValueError("model_path is required")
         if model_path == "YatharthS/LavaSR":
             model_path = snapshot_download(model_path, repo_type="model")
 
