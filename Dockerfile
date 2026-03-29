@@ -13,9 +13,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install uv for fast package installs
 RUN pip install --no-cache-dir uv
 
-# Install LavaSR from YOUR fork (contains the repo_type fix)
+# Install LavaSR v2 from our fork, pinned to a known commit for reproducibility
 RUN uv pip install --system --no-cache \
-        git+https://github.com/memoreco-dev/LavaSR.git
+        git+https://github.com/memoreco-dev/LavaSR.git@057b154e0c4f4ea5bf76f618b31f9f0a6e4216ea
 
 # Install RunPod SDK and soundfile
 RUN uv pip install --system --no-cache \

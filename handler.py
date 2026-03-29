@@ -4,13 +4,15 @@ import tempfile
 import os
 import soundfile as sf
 
+OUTPUT_SR = 48000
+
 model = None
 
 def get_model():
     global model
     if model is None:
         from huggingface_hub import snapshot_download
-        from LavaSR.model import LavaEnhance
+        from LavaSR.model import LavaEnhance2
         print("Downloading model weights...")
         repo_id = os.environ.get("HF_OWNER") + "/" + os.environ.get("HF_REPO")
         local_path = snapshot_download(
@@ -18,8 +20,8 @@ def get_model():
             repo_type="model",
             local_dir="/app/model_weights",
         )
-        print("Loading model...")
-        model = LavaEnhance(local_path, device="cpu")
+        print(f"Loading LavaSR v2 model (output {OUTPUT_SR} Hz)...")
+        model = LavaEnhance2(local_path, device="cpu")
         print("Model ready.")
     return model
 
@@ -50,11 +52,12 @@ def handler(job):
             ).cpu().numpy().squeeze()
         except Exception as e:
             return {"error": f"Enhancement failed: {str(e)}"}
-        sf.write(output_path, enhanced, 16000)
+        sf.write(output_path, enhanced, OUTPUT_SR)
         with open(output_path, "rb") as f:
             enhanced_b64 = base64.b64encode(f.read()).decode("utf-8")
     return {
         "enhanced_audio_b64": enhanced_b64,
+        "output_sr": OUTPUT_SR,
         "message": "ok",
     }
 
