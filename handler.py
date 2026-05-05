@@ -5,6 +5,8 @@ import os
 import soundfile as sf
 
 OUTPUT_SR = 48000
+DEFAULT_HF_OWNER = "YatharthS"
+DEFAULT_HF_REPO = "LavaSR"
 
 model = None
 
@@ -13,8 +15,10 @@ def get_model():
     if model is None:
         from huggingface_hub import snapshot_download
         from LavaSR.model import LavaEnhance2
-        print("Downloading model weights...")
-        repo_id = os.environ.get("HF_OWNER") + "/" + os.environ.get("HF_REPO")
+        hf_owner = os.environ.get("HF_OWNER", DEFAULT_HF_OWNER)
+        hf_repo = os.environ.get("HF_REPO", DEFAULT_HF_REPO)
+        repo_id = f"{hf_owner}/{hf_repo}"
+        print(f"Downloading model weights from {repo_id}...")
         local_path = snapshot_download(
             repo_id=repo_id,
             repo_type="model",
